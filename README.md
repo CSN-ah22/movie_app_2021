@@ -1,7 +1,7 @@
 # 최선아 [202030430]
 </br>
 
-# 1. 목 록
+# 목 록
  [1-1. 1주차](#1주차) </br>
  [1-2. 2주차](#2주차) </br>
 
@@ -179,6 +179,8 @@ ReactDOM.render(<App />,document.getElementById('root'));
 - `<App >` 이라 쓰면 리액트는 인식을 하지 못합니다
 - `<App />` 같은 표시를 컴포넌트로 인식합니다
 <br/><br/>
+# 2주차 끝 
+[목록으로 가기🔼](#목-록) </br></br>
 
 # 1주차
 ## [09월 01일]</br></br>
@@ -248,3 +250,5 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 </br>
 
 # 1주차 끝
+
+[목록으로 가기🔼](#목-록) </br>
