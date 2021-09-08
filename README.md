@@ -10,8 +10,169 @@
 # 2주차
 ## [09월 08일]</br></br>
 
-favicon이 뭘까
+## 슈퍼 빠른 create-react-app
 
+### INTRO
+
+**React 없던 시절**
+
+웹팩은 자바스크립트 앱을 위한 정적 모듈들을 한나로 묶어주는 번들러이다
+
+바벨은 최신 자바스크립트 문법을 사용할 수 있게 해주는 트랜스파일러이다
+
+**보일러 플레이트?**
+
+보일러 플레이트는 개발을 바로 시작할 수 있도록 만든 기초 환경을 말한다
+
+---
+
+### 리액트앱 만들기
+
+`npx create-react-app movie_app_2021` 이 코드를 터미널에 입력합니다
+
+movie_app_2021부분은 파일명입니다 마음대로 변경하셔도 OK
+
+VS코드를 실행하여 방금 만든 따끈따끈한 `movie_app_2021` 파일을 열어줍니다
+
+---
+
+### 리액트앱 수정하기
+
+필요없는 코드를 지우겠습니다
+
+`pakage.json` 파일을 열어서 `"test": "reate scripts test","eject":"react scripts eject"` 부분을 지워줍니다
+
+---
+
+### 리액트앱 실행하기
+
+`npm start` 이 코드를 터미널에 입력합니다
+
+방화벽 액세스 허용 알림이 뜨면 허용해주도록 합니다
+
+브라우저창이 열리고  successfully! 되면 완료됩니다!
+
+---
+
+### 리액트앱 종료하기
+
+`Ctrl + c` 를 두번 누르면 정말 종료할까요? 라는 문구가 나옵니다
+
+`Y` 를 눌러 종료합니다
+
+---
+
+### Git Hub 에 리액트앱 올리기
+
+`git intit` 이 코드를 터미널에 입력합니다
+
+VS코드 화면의 하단에 구름 모양 버튼을 누르고 public으로 저장소를 생성합니다
+
+구름 모양이 화살표로 바뀌면 커밋 버튼을 누른후 PUSH 하여 파일을 올립니다 
+
+---
+
+### 리액트앱 수정하기2
+
+**수정하기전 새로운 지식 kip!**
+
+`public` 폴더 안에 `favicon.ico` 라는 파일이 있습니다
+
+이 파일은 리액트앱이 실행될때 브라우저 탭의 제목-아이콘으로 표시되는 아이콘입니다
+
+**다음으로 `src` 폴더를 열어 아래의 파일들을 전부 지워줍니다**
+
+`App.css` `App.test.js` `index.css` `logo.svg` `serviceWorker.js` `setupTest.js` `pakage-lock.json`
+
+ 그럼 아래의 파일들만 남을겁니다
+
+`App.js` `index.js` `gitignore` `pagkage.json` `README` `pakage.lock`
+
+`**index.js` 파일 수정**
+
+아래의 코드를 싹 다 지웁니다
+
+```jsx
+`import './index.css';`
+
+`import * as serviceWorker from './serviceWorker';`
+
+`<React.StrictMode></React.StrictMode> //안의 <App />,는 남겨둡니다`
+
+`serviceWorker.nuregister();`
+```
+
+**`App.js` 파일 수정**
+
+아래의 코드만 남을때까지 지웁니다
+
+```jsx
+function App() {
+  return (
+    <div>Hello React</div>
+  );
+}
+
+export default App
+```
+
+**리액트앱 실행해보기**
+
+`npm start` 이 코드를 터미널에 입력합니다
+
+---
+
+### 리액트 동작 원리 알아보기
+
+- 리액트는 index.html의 <div id="root"></div> 중간에 넣을 결과물을 App.js 파일을 해석하여 만들어 넣는 역할을 담당한다
+- `index.js` 파일의 아래 코드가 html에 접근을 시도한다
+
+    `ReactDOM.render(<App />,document.getElementById('root'));`
+
+**정리하자면**
+
+- `App.js` 는 자원이다
+- `index.js` 는 접근 동작을 주도한다
+- `index.html` 은 view이다
+- 리액트는 `App.js` 와 `index.js` 를 자바스크립트를 이용해 해석한다
+
+---
+
+## 첫 번째 리액트 기초 개념: 컴포넌트
+
+### **`App.js` 에 컴포넌트가 들어있다구?**
+
+아래는 컴포넌트의 기본 형식입니다
+
+```jsx
+function App() {
+  return (
+    <div>Hello React</div>
+  );
+}
+
+export default App
+```
+
+🌸export 부분이 없으면 컴포넌트를 사용할 수 없습니다! 매우 중요합니다🌸
+
+### `index.js` 에서 컴포넌트를 어떻게 사용할까?
+
+```jsx
+import ReactDOM from 'react-dom';
+import App from './App';
+
+ReactDOM.render(<App />,document.getElementById('root')); 
+
+```
+
+- `ReactDOM.render()` 함수는 첫번째 인자로 오는 컴포넌트를 그려질 결과로 만들어줍니다
+- `ReactDOM.render()` 함수는 두번째 인자로 오는 것을 그려질 위치로 지정합니다
+- `document.getElementById('root')` 함수는 html에서 id가 root인 태그를 지정합니다
+- 여기서 html은 `index.html`을 가리키게 됩니다
+- `<App >` 이라 쓰면 리액트는 인식을 하지 못합니다
+- `<App />` 같은 표시를 컴포넌트로 인식합니다
+<br/><br/>
 
 # 1주차
 ## [09월 01일]</br></br>
