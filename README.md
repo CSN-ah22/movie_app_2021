@@ -62,7 +62,7 @@ VS코드를 실행하여 방금 만든 따끈따끈한 `movie_app_2021` 파일�
 
 ---
 
-### Git Hub 에 리액트앱 올리기
+## Git Hub 에 리액트앱 올리기
 
 `git intit` 이 코드를 터미널에 입력합니다
 
@@ -88,9 +88,11 @@ VS코드 화면의 하단에 구름 모양 버튼을 누르고 public으로 저�
 
 `App.js` `index.js` `gitignore` `pagkage.json` `README` `pakage.lock`
 
-`**index.js` 파일 수정**
+**`index.js` 파일 수정**
 
 아래의 코드를 싹 다 지웁니다
+<details>
+<summary>삭제할 코드</summary>
 
 ```jsx
 `import './index.css';`
@@ -101,10 +103,13 @@ VS코드 화면의 하단에 구름 모양 버튼을 누르고 public으로 저�
 
 `serviceWorker.nuregister();`
 ```
+</details>
 
 **`App.js` 파일 수정**
 
 아래의 코드만 남을때까지 지웁니다
+<details>
+<summary>삭제할 코드</summary>
 
 ```jsx
 function App() {
@@ -115,6 +120,7 @@ function App() {
 
 export default App
 ```
+</details>
 
 **리액트앱 실행해보기**
 
@@ -122,7 +128,7 @@ export default App
 
 ---
 
-### 리액트 동작 원리 알아보기
+## 리액트 동작 원리 알아보기
 
 - 리액트는 index.html의 <div id="root"></div> 중간에 넣을 결과물을 App.js 파일을 해석하여 만들어 넣는 역할을 담당한다
 - `index.js` 파일의 아래 코드가 html에 접근을 시도한다
