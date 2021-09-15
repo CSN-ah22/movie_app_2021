@@ -1,10 +1,10 @@
 import Potato from "./Potato"
 
 
-function Food(props){
-  const {fav}=props; //꼭 fav 로 변수선언을 해주어야만 제대로 출력된다
+function Food({name}){
+  //const {fav}=props; //fav 로 변수선언을 해주어서 값을 담고 출력한다
 
-  return <h1>I like {fav}</h1>;
+  return <h1>I like {name}</h1>;
   
 }
 
@@ -23,9 +23,11 @@ const foodILike = [
 function App() {
   return (
     <div>
-      <h1>Hello React</h1>
-      <Food fav="kimchi" />
-      <Potato DDD="you" />
+      
+      {
+        foodILike.map(dish => (<Food name={dish.name} />))
+      }
+      {/* <Potato DDD="you" /> */}
       </div>
   );
 }
