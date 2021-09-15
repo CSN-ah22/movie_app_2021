@@ -25,7 +25,7 @@ function App() {
     <div>
       <h1>Hello React</h1>
       <Food fav="kimchi" />
-      <Potato fav="you" />
+      <Potato DDD="you" />
       </div>
   );
 }
