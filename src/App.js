@@ -6,12 +6,23 @@ function Food(props){
   
 }
 
+const foodILike = [
+{
+  name:'kimchi',
+  iamge: 'https://cdn.imweb.me/thumbnail/20200415/6b6e035658bac.png'
+},
+{
+  name:'Bibimbap',
+  image:'https://lh3.googleusercontent.com/proxy/CDMwVW_u0tk2gIRgzZmi4T4MA2d54xaVGOAbRqxxl_F8dtdnNjnxPftP2V_lDwoVRrUWXDNcuHEQbHZIChrSyHrgt6-PrSmHYfORsOcQILDWURciwOqV1YtoA4giGPrt9qIkKcYqnlyIBeKJkCY'
+}
+
+];
+
 function App() {
   return (
     <div>
       <h1>Hello React</h1>
-      <Food fav="kimchi" />
-      <Food fav="ramen" />
+      
       </div>
   );
 }
