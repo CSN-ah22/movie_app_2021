@@ -1,5 +1,6 @@
-function Potato(){
-    return<h1>I Love Potato</h1>
+function Potato(foo){
+    const {fav}=foo;
+    return<h1>I Love {fav}</h1>
 }
 
 export default Potato;
