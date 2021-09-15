@@ -24,6 +24,7 @@ function App() {
   return (
     <div>
       <h1>Hello React</h1>
+      <Food fav="kimchi" />
       <Potato />
       </div>
   );
