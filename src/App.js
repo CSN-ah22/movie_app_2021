@@ -26,12 +26,6 @@ const foodILike = [ //json 객체입니다
 
 ];
 
-function renderfood(dish){
-  return (
-    <Food name={dish.name} picture={dish.image} />
-  );
-}
-
 function App() {
   return (
     //출력할 내용을 div 안에 적습니다
@@ -39,10 +33,10 @@ function App() {
       
       {/* json 객체의 name을 출력하는 코드입니다 */}
       {
-        foodILike.map(renderfood)
         //---------------------------
-        //foodILike.map(dish => (<Food name={dish.name} picture={dish.image} />))
+        foodILike.map(dish => (<Food name={dish.name} picture={dish.image} />))
         //⏫json객체 foodILike를 map 객체로 전환하여 dish 함수를 이용해 name 값을 Food컴포넌트로 전달한다
+        //---------------------------
       }
 
       {/* 다른 파일의 컴포넌트를 사용하는 코드입니다 */}
