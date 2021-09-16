@@ -55,14 +55,14 @@ function Food({fav}){
 
 + <b>여러개의 props 사용하기</b>
 ```react
-<Food fav="kimchi" /> //3번 호출, 각자 
+<Food fav="kimchi" /> //3번 호출, 각자 출력
 <Food fav="ramen" />
 <Food fav="cookie" />
 ```
 ---
 
 ### map() 함수로 컴포넌트 많이 만들기
-+ <b>map()함수 사용법 알아보기</b>
++ <b>실습1 map()함수 사용법 알아보기</b>
 ```react
 > const friends = ["A","B","C","D"] //노드를 사용해서 배열을 선언후 초기화 합니다
 ```
@@ -88,7 +88,7 @@ D
 + return 값 0이 모여 배열이된다
 + 위의 배열이 map()함수의 반환값이 된다
 
-<b>map() 함수로 이름에 하트 추가한 배열 만들기</b>
+<b>실습2 map() 함수로 이름에 하트 추가한 배열 만들기</b>
 ```react
 > const friends = ["A","B","C","D"] //노드를 사용해서 배열을 선언후 초기화 합니다
 ```
