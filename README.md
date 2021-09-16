@@ -4,8 +4,103 @@
 # 목 록
  [1-1. 1주차](#1주차) </br>
  [1-2. 2주차](#2주차) </br>
-
+ [1-3. 3주차](#3주차) </br>
+ 
 </br></br>
+
+# 3주차
+## [09월 15일]</br></br>
+
+## 세 번째 리액트 기초 개념: props
+
+### Props란?
++ 컴포넌트에서 컴포넌트로 전달하는 데이터
++ 컴포넌트로 넘어가는 매개변수
+
+### Props 사용하기
+
+<b>Food 컴포넌트 호출</b>🔽</br>
+
+```<Food fav="kimchi" />```&#160;&#160;&#160; (// Food 라는 컴포넌트에 fav라는 이름으로 문자열을 전달합니다)
+####
+
+<b>Food 컴포넌트</b>🔽
+```react
+function Food(props){
+ console.log(props)
+ return(
+  <h1>I like {props.fav}</h1>
+ )
+}
+```
+**구조 분해 할당으로 props 사용하기**🔽</br>
++ <b>예시 1</b>
+```react
+function Food(props){
+ const {fav}=props;
+ return(
+  <h1>I like {fav}</h1>
+ )
+}
+```
++ <b>예시 2</b>
+```react
+function Food({fav}){
+ return(
+  <h1>I like {fav}</h1>
+ )
+}
+```
+<pre>두 방법중 아무거나 사용해도 됩니다</pre>
+
++ <b>여러개의 props 사용하기</b>
+```react
+<Food fav="kimchi" /> //3번 호출, 각자 
+<Food fav="ramen" />
+<Food fav="cookie" />
+```
+---
+
+### map() 함수로 컴포넌트 많이 만들기
++ <b>map()함수 사용법 알아보기</b>
+```react
+> const friends = ["A","B","C","D"] //노드를 사용해서 배열을 선언후 초기화 합니다
+```
+```react
+> friends.map(current => { //map()을 사용합니다
+  console.log(current);
+  return 0;
+})
+```
+결과🔽
+```react
+A
+B
+C
+D
+[0,0,0,0]
+```
+✔ 결과를 통한 map() 함수의 특징 정리</br>
+1. 특징
++ map 함수의 매개변수로 들어간 current 함수는 참조대상 friends의 원소를 대상으로 실행된다
++ 그래서 4개의 원소가 들어있으니 4번 실행된것!
+2. 특징
++ return 값 0이 모여 배열이된다
++ 위의 배열이 map()함수의 반환값이 된다
+
+<b>map() 함수로 이름에 하트 추가한 배열 만들기</b>
+```react
+> const friends = ["A","B","C","D"] //노드를 사용해서 배열을 선언후 초기화 합니다
+```
+```react
+> friends.map(current => { //map()을 사용합니다
+  return friend + "❤";
+})
+```
+결과🔽
+```react
+["A❤","B❤","C❤","D❤"]
+```
 
 # 2주차
 ## [09월 08일]</br></br>
