@@ -5,8 +5,65 @@
  [1-1. 1주차](#1주차) </br>
  [1-2. 2주차](#2주차) </br>
  [1-3. 3주차](#3주차) </br>
+ [1-4. 4주차](#4주차) </br>
  
 </br></br>
+
+# 4주차
+## [09월 29일]</br></br>
+
+## 음식 앱에 prop-types 도입하기
+
+### Props란?
++ 컴포넌트에서 컴포넌트로 전달하는 데이터
++ 컴포넌트로 넘어가는 매개변수
+
+### 만약 Props가 잘못 전달된다면?
++ 잘못된 값을 담고 있는 Props 가 전달되면 원하는대로 작동되지 않는다
++ props를 검사하는 방법을 공부해 미리 방지하자
+
+### [1] FoodLike.json 데이터에 평점(rating) 추가하기
+
+```java
+const foodILike = [ //json 객체입니다
+{
+  id: 1, //key props
+  name:'kimchi',
+  image: 'https://cdn.imweb.me/thumbnail/20200415/6b6e035658bac.png',rating: 5
+},
+{
+  id:2, //key props
+  name:'Bibimbap',
+  image:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Dolsot-bibimbap.jpg/220px-Dolsot-bibimbap.jpg',rating: 4.9
+}
+
+];
+```
+
+### [2] prop-types 설치하기
+
++ prop-types란?
+
+  - 컴포넌트가 전달받은 props가 정말 내가 원하는 값인지 확인해 준다
+  
+  - 미리 'Food 컴포넌트는 반드시 picture prop가 전달돼야 한다' 고 정의할 수 있다
+
+ + 설치 코드문 (cmd) 
+
+```
+> npm install prop-types
+```
++ pakage.json 파일> dependencies> prop-types이 있는지 확인
+
+### prop-types 적용하기
++ 해석: 모든 props는 문자열이고 반드시 있어야 한다
+```javascript
+Food.propTypes={
+name: PropTypes.string.isRquired,
+picture: PropTypes.string.isRequired,
+rating: PropTypes.string.isRequired,
+};
+```
 
 # 3주차
 ## [09월 15일]</br></br>
@@ -101,6 +158,7 @@ D
 ```react
 ["A❤","B❤","C❤","D❤"]
 ```
+### 3주차 끝 [목록으로 가기🔼](#목-록) </br></br>
 
 # 2주차
 ## [09월 08일]</br></br>
@@ -274,7 +332,7 @@ ReactDOM.render(<App />,document.getElementById('root'));
 - `<App >` 이라 쓰면 리액트는 인식을 하지 못합니다
 - `<App />` 같은 표시를 컴포넌트로 인식합니다
 <br/><br/>
-## 2주차 끝 [목록으로 가기🔼](#목-록) </br></br>
+### 2주차 끝 [목록으로 가기🔼](#목-록) </br></br>
 
 # 1주차
 ## [09월 01일]</br></br>
