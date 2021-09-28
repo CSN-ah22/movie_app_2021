@@ -22,7 +22,7 @@
 + 잘못된 값을 담고 있는 Props 가 전달되면 원하는대로 작동되지 않는다
 + props를 검사하는 방법을 공부해 미리 방지하자
 
-### [1] FoodLike.json 데이터에 평점(rating) 추가하기
+### :one: FoodLike.json 데이터에 평점(rating) 추가하기
 
 ```java
 const foodILike = [ //json 객체입니다
@@ -57,6 +57,7 @@ const foodILike = [ //json 객체입니다
 
 ### prop-types 적용하기
 + 해석: 모든 props는 문자열이고 반드시 있어야 한다
++ 결과: 아까 rating 자료형이 number였으니 오류가 난다
 ```javascript
 Food.propTypes={
 name: PropTypes.string.isRquired,
@@ -64,6 +65,10 @@ picture: PropTypes.string.isRequired,
 rating: PropTypes.string.isRequired,
 };
 ```
+### prop-types 경고 해결하기
+
+
+### 4주차 끝 [목록으로 가기🔼](#목-록) </br></br>
 
 # 3주차
 ## [09월 15일]</br></br>
