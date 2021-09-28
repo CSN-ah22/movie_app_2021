@@ -23,7 +23,7 @@ const foodILike = [ //json 객체입니다
 {
   id:2, //key props
   name:'Bibimbap',
-  image:'https://lh3.googleusercontent.com/proxy/CDMwVW_u0tk2gIRgzZmi4T4MA2d54xaVGOAbRqxxl_F8dtdnNjnxPftP2V_lDwoVRrUWXDNcuHEQbHZIChrSyHrgt6-PrSmHYfORsOcQILDWURciwOqV1YtoA4giGPrt9qIkKcYqnlyIBeKJkCY'
+  image:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Dolsot-bibimbap.jpg/220px-Dolsot-bibimbap.jpg'
 }
 
 ];
