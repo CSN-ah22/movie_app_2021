@@ -22,7 +22,7 @@
 + 잘못된 값을 담고 있는 Props 가 전달되면 원하는대로 작동되지 않는다
 + props를 검사하는 방법을 공부해 미리 방지하자
 
-### :one: FoodLike.json 데이터에 평점(rating) 추가하기
+### 1️⃣ FoodLike.json 데이터에 평점(rating) 추가하기
 
 ```java
 const foodILike = [ //json 객체입니다
@@ -40,7 +40,7 @@ const foodILike = [ //json 객체입니다
 ];
 ```
 
-### [2] prop-types 설치하기
+### 2️⃣ prop-types 설치하기
 
 + prop-types란?
 
