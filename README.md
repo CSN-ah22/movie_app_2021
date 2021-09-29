@@ -68,9 +68,183 @@ rating: PropTypes.string.isRequired,
 };
 ```
 ### prop-types 경고 해결하기
-//여기서 부터 작성
++ number--String 오류를 number--number 로 해결해보자
 
-### 4주차 끝 [목록으로 가기🔼](#목-록) </br></br>
+```javascript
+Food.prototype = {//Food컴포넌트가 전달받을 props 타입을 검사
+  name: PropTypes.string.isRequired,
+  picture: PropTypes.string.isRequired,
+  rating: PropTypes.number.isRequired
+};
+```
+### props-types의 특별한 기능 - props이름 검사
+
+```java
+/*자바에서는 호출할때 들어가는 매개변수 명과 메서드의 매개변수 명이 달라도 상관 없었다*/
+public static void main(args[]){
+  int PuP = 5;
+  java_method(PuP);
+}
+
+public void java_method(int OuO){
+
+}
+```
++ 하지만 react 에서는 다르다. props-type을 썼을시 호출할때의 매개변수명과 실제 컴포넌트의 매개변수명이 다르면 에러가 발생한다
+
+### isRequired의 뜻?
++ 필요하다 라는 뜻
++ 지우면 매개변수로써 필수로 값을 넣어줘야한다가 적용되지 않는다
++ 적용한다면 컴포넌트 호출시 필수로 매개값을 넘겨줘야한다 </BR>
+(내가 아는 JAVA랑 다름) 
+
+### 3️⃣ state
++ state란?
+
+  - 동적인 데이터를 다룰때 사용한다
+  - 반대로 props는 정적인 데이터를 다룬다
+  - state는 const나 let을 쓰지 않는 객체이다
+  - state는 클래스형 컴포넌트에서 사용된다
+
+### 클래스형 컴포넌트란?
++ 기본 뼈대↓↓↓
+```java
+class App extends React.Component{
+  //반드시 App 클래스가 리액트에서 제공하는 Component 클래스를 상속받아야 한다
+
+}
+```
+뼈대 안에는 무엇을 넣는가
++ JSX를 반환해야한다 
++ JSX는 브라우저에 출력하는것을 말한다 ```<h1></h1>```
++ 그런데 클래스라서 return을 사용할 수 없다
++ render() 함수를 사용해 JSX를 반환한다
+
+### render 함수 사용하기
+```java
+class App extends React.Component{
+  render(){
+    return <h1>'Hello I am class component'</h1>;
+  }
+}
+```
++ React가 자동으로 render() 함수를 실행시켜준다
++ 호출이 필요 없다
+
+### back- 클래스 컴포넌트에 state 사용하기
+```java
+state = {
+// const , let을 사용하지 않는 객체 형태의 데이터
+
+count: 0; //초기화
+
+};
+
+class App extends React.Component{
+  render(){
+    return <h1>'Hello I am class component'</h1>;
+  }
+}
+```
+
+### add버튼과 minus버튼 생성후 기능부여하기
+```java
+    add = () =>{
+        this.setState({count: this.state.count+1})
+    }
+
+    minus = () =>{
+        this.setState({count: this.state.count-1})
+    }
+```
+
+```java
+render(){ 
+        console.log('render');
+        return (
+            <div> 
+            <h1>Rhe number is: {this.state.count}</h1> 
+            <button onClick={this.add}>Add</button>
+            <button onClick={this.minus}>Minus</button>
+            </div>
+        )
+    }
+```
+
+### setState() 란?
++ 리액트는 state를 직접 변경할 수 없도록 제한한다
++ state에 간접적으로 접근하기 위해서 사용한다
+```java
+add = () =>{
+        this.setState({count: 1})
+    }
+```
+<특징>
++ 리액트가 화면 구성이 빠르다
++ 업데이트시 새로고침이 일어나지 않아 화면이 깜빡거리지 않는다
++ 추가되었거나 동적으로 값이 변경되었을 시에만 실행된다
+
+<이 외에 되고 안되는 코드문>
+<br>
+{ count: ··· }
++ this.state.count++ 안됨
++ this.state.count = this.state.count + 1 됨
++ this.state.count += 1 됨
+
+### add, minus() 함수 개선하기
++ current 부분을 추가했어
++ current 부분에는 현재 state객체가 넘어와
++ state객체 안의 count에 1을 더하는거야
+```java
+add = () =>{
+        this.setState(current => ({count: this.state.count+1}))
+    }
+```
+```java
+minus = () =>{
+        this.setState(current => ({count: this.state.count-1}))
+    }
+```
+
+### 4️⃣클래스형 컴포넌트의 생명주기
+<img src="https://user-images.githubusercontent.com/70833455/135310288-477feba9-0554-4dea-9944-65b009a783a3.png" alt="생명주기그래프" width="500">
++ 취소선 처리 되어있는건 제거되기로 확정된것
+<hr>
+
++ constructor( ) 함수
+  - 생성자 입니다
+  - 가장 먼저 실행됩니다
+  - 이후가 render() 함수 입니다
+<hr>
+
++ componentDidMount( ) 함수
+  - render함수 다음으로 실행됩니다
+  - render함수가 또 작동되기 전 같은 값이 반복되지 않도록 한다
+  - constructor - render - 같은값 반복 안되게 처리 - ···
+  - 한마디로 누적 카운트가 필요할때 사용되는 함수
+<hr>
+여기까지해서 constructror,render,componentDidMount를  < Mount > 라고 부른다<br>
+< Mount >는 "이 화면이 보여지고 있다. 이 component가 보여지고 있다" 라는 뜻
+<br>
+render 함수에서 jsx 를 리턴하는 행위 자체를 < Mount >되었다 라고 한다
+<hr>
+
++ componentDidUpdate( )함수
+  - 화면이 업데이트될때(새로고침) 실행된다
+  - setState() - render() - componentDidUpdate()
+  - setState()가 실행될때만 사용된다
+  - <업데이트 Update>로 분류 되었다
+<hr>
+
++ componentWillUnmount( )함수
+  - 컴포넌트가 죽을때 실행된다
+  - < 언마운트 Unmount>로 분류 되었다
+
+<hr>
+생명주기를 배우는 목표: 언제 어디서 무슨 작업을 할 수 있는지 결정할 수 있기까지 되기 위하여
+
+
+### 5주차 끝 [목록으로 가기🔼](#목-록) </br></br>
 
 # 3주차
 ## [09월 15일]</br></br>
