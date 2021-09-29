@@ -1,50 +1,81 @@
-import Potato from "./Potato"
+import React from "react" //필수
+
+class App extends React.Component{ 
+    //생성자
+    constructor(props){
+        //super는 부모 클래스의 생성자를 참조하는것
+        super(props)//this를 사용하려면 super가 필수
+        console.log('constructor')
+    }
+
+    
+    componentDidMount(){ //render이 일어나고 누적 카운트가 필요할때 사용되는 함수 = 저장?
+        console.log('componentDidMount')
+    }
+
+    componentDidUpdate(){//화면중에 뭔가가 Update되면 실행되는 함수
+        console.log('componentDidUpdate...Good bye')
+    }
+    
+    //index.js의 component 가 필요없음
+    state = {
+        count: 0
+    }
 
 
-function Food({name,picture}){ //props 연습1
-  //const {fav}=props; //fav 로 변수선언을 해주어서 값을 담고 출력한다
+    add = () =>{
+        //this.state.count = 1
+        this.setState({count: this.state.count+1})
+    }
 
-  return (
-    <div>
-      <h1>I like {name}</h1>
-      <img src={picture} alt={name} />
-    </div>
+    minus = () =>{
+        this.setState({count: this.state.count-1})
+    }
 
-  );
-  
-}
-
-const foodILike = [ //json 객체입니다
-{
-  id: 1, //key props
-  name:'kimchi',
-  image: 'images/kimchi.png',rating: 5
-},
-{
-  id:2, //key props
-  name:'Bibimbap',
-  image:'images/bibimbap.jpg',rating: 4.9
-}
-
-];
-
-function App() {/* props 연습2 json 객체의 name을 출력하는 코드입니다 */
-  return (
-    //출력할 내용을 div 안에 적습니다
-    <div>
-      
-      {
-        
-        foodILike.map(dish => (<Food key={dish.id} name={dish.name} picture={dish.image} />))
-        //⏫json객체 foodILike를 map 객체로 전환하여 dish 함수를 이용해 name 값을 Food컴포넌트로 전달한다
-        
-      }
-
-      {/* 다른 파일의 컴포넌트를 사용하는 코드입니다 */}
-      {/* <Potato DDD="you" /> */}
-
-      </div>
-  );
+    //render 함수를 이용해서 브라우저에 출력한다
+    render(){ 
+        console.log('render');
+        // !react 출력은 하나의 태그에 뭉쳐줘야 한다
+        //this는 현재의 클래스를 말함
+        return (
+            <div> 
+            <h1>Rhe number is: {this.state.count}</h1> 
+            <button onClick={this.add}>Add</button>
+            <button onClick={this.minus}>Minus</button>
+            </div>
+        )
+    }
 }
 
 export default App
+
+
+/*
+두번째 방법
+import React, {Component} from "react" //필수
+
+class App extends Component{ //index.js의 component 가 필요없음
+    //render 함수를 이용해서 브라우저에 출력한다
+    render(){ 
+        return (
+            <h1>'Hello'</h1>
+        )
+    }
+}
+
+export default App */
+
+/*
+세번째 방법
+import {Component} from "react" //필수
+
+class App extends Component{ //index.js의 component 가 필요없음
+    //render 함수를 이용해서 브라우저에 출력한다
+    render(){ 
+        return (
+            <h1>'Hello'</h1>
+        )
+    }
+}
+
+export default App */
