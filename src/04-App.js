@@ -2,7 +2,7 @@ import Potato from "./Potato"
 import PropTypes from 'prop-types'
 
 
-function Food({name,picture,rating}){ //props 연습1
+function Food({name,picture,rating}){ //props 연습1 + prop-types 연습을 위해 rating 추가
   //const {fav}=props; //fav 로 변수선언을 해주어서 값을 담고 출력한다
 
   return (
@@ -34,7 +34,7 @@ const foodILike = [ //json 객체입니다
 
 ];
 
-function App() {/* props 연습2 json 객체의 name을 출력하는 코드입니다 */
+function App() {/* props 연습2 json 객체의 value를 Food컴포넌트로 전송해 출력하는 코드입니다 */
   return (
     //출력할 내용을 div 안에 적습니다
     <div>
@@ -53,12 +53,12 @@ function App() {/* props 연습2 json 객체의 name을 출력하는 코드입�
   );
 }
 
-Food.prototype = {
+Food.prototype = {//Food컴포넌트가 전달받을 props 타입을 검사
   name: PropTypes.string.isRequired,
   picture: PropTypes.string.isRequired,
   rating: PropTypes.number.isRequired
 };
 
 
-export default App
+export default App //브라우저 출력 컴포넌트에 내보내기
 
