@@ -68,7 +68,7 @@ rating: PropTypes.string.isRequired,
 };
 ```
 ### prop-types 경고 해결하기
-+ number--String 오류를 number--number 로 해결해보자
++ 위의 number--String 오류를 number--number 로 해결해보자
 
 ```javascript
 Food.prototype = {//Food컴포넌트가 전달받을 props 타입을 검사
@@ -77,6 +77,12 @@ Food.prototype = {//Food컴포넌트가 전달받을 props 타입을 검사
   rating: PropTypes.number.isRequired
 };
 ```
+### isRequired의 뜻?
++ 필요하다 라는 뜻
++ 지우면 매개변수로써 필수로 값을 넣어줘야한다가 적용되지 않는다
++ 적용한다면 컴포넌트 호출시 필수로 매개값을 넘겨줘야한다 </BR>
+(내가 아는 JAVA랑 다름) 
+
 ### props-types의 특별한 기능 - props이름 검사
 
 + 자바에서는 호출할때 들어가는 매개변수 명과 메서드의 매개변수 명이 달라도 상관 없었다
@@ -92,12 +98,6 @@ public void java_method(int OuO){
 }
 ```
 + 하지만 react 에서는 다르다. props-type을 썼을시 호출할때의 매개변수명과 실제 컴포넌트의 매개변수명이 다르면 에러가 발생한다
-
-### isRequired의 뜻?
-+ 필요하다 라는 뜻
-+ 지우면 매개변수로써 필수로 값을 넣어줘야한다가 적용되지 않는다
-+ 적용한다면 컴포넌트 호출시 필수로 매개값을 넘겨줘야한다 </BR>
-(내가 아는 JAVA랑 다름) 
 
 ### 3️⃣ state
 + state란?
