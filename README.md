@@ -79,8 +79,9 @@ Food.prototype = {//Food컴포넌트가 전달받을 props 타입을 검사
 ```
 ### props-types의 특별한 기능 - props이름 검사
 
++ 자바에서는 호출할때 들어가는 매개변수 명과 메서드의 매개변수 명이 달라도 상관 없었다
+
 ```java
-/*자바에서는 호출할때 들어가는 매개변수 명과 메서드의 매개변수 명이 달라도 상관 없었다*/
 public static void main(args[]){
   int PuP = 5;
   java_method(PuP);
