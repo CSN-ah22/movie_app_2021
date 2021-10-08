@@ -1,55 +1,41 @@
-import React from "react" //필수
+import React from "react"
+import axios from "axios"
 
-// <클래스 컴포넌트> 
-//index.js에 있는 <ReactDom컴포넌트>와는 다르다
-class App extends React.Component{ 
-    /*생명주기START*/
-    //생성자
-    constructor(props){
-        //super는 부모 클래스의 생성자를 참조하는것
-        super(props)//this를 사용하려면 super가 필수
-        console.log('constructor')
-    }
-
-    
-    componentDidMount(){ //render이 일어나고 누적 카운트가 필요할때 사용되는 함수
-        console.log('componentDidMount')
-    }
-
-    componentDidUpdate(){//화면중에 뭔가가 Update되면 실행되는 함수
-        console.log('componentDidUpdate...Good bye')
-    }
-    /*생명주기END*/
-
-    /*state START*/
+class App extends React.Component{
     state = {
-        count: 0
+        isLoading: true,
+        movies: []
     }
 
-
-    add = () =>{
-        //정적으로 초기화 하고 싶다면>>>{count: 1}
-        this.setState(current => ({count: this.state.count+1}))
+    //영화 데이터 끌어오는 함수
+    getMovies = async () => { 
+        //async와 await를 꼭 써주어야만 변수 movies에 값을 잘 할당할 수있다
+        const {
+            data: {
+                data:{movies}
+            }
+        } = await axios.get('https://yts-proxy.now.sh/list_movies.json')
+        console.log(movies)
     }
 
-    minus = () =>{
-        this.setState(current => ({count: this.state.count-1}))
+    //초기 render() 가 끝나면 실행된다
+    componentDidMount(){
+        //함수 호출
+        this.getMovies()
     }
 
-    //render 함수를 이용해서 브라우저에 출력한다
-    render(){ 
-        console.log('render');
-        // !react 출력은 하나의 태그에 뭉쳐줘야 한다
-        //this는 현재의 클래스를 말함
-        return (
-            <div> 
-            <h1>Rhe number is: {this.state.count}</h1> 
-            <button onClick={this.add}>Add</button>
-            <button onClick={this.minus}>Minus</button>
+    //View
+    render(){
+        //변수 isLoading 선언후 state의 boolean값 할당
+        const { isLoading } = this.state
+
+        return(
+            <div>
+                {/*삼항 연산자 true : false 따옴표와 콜론의 위치 주의 */}
+                { isLoading ? 'Loading...' : '영화 데이터 출력' }
             </div>
         )
     }
-    /*state END*/
 }
 
-export default App
+export default App; //까먹지 말기
