@@ -34,20 +34,29 @@ class App extends React.Component{
         const { isLoading, movies } = this.state
 
         return(
-            <div>
+            <section class="container">
                 {/*삼항 연산자 true : false 따옴표와 콜론의 위치 주의 */}
-                { isLoading 
-                ? 'Loading...' 
-                : movies.map((movie) => {
+                { isLoading ?( 
+                    <div class="loader">
+                    <span class="loader__text:">Loading...</span>
+                    </div>
+                 ) : (
+                     <div class="movies">
+                         {
+                            movies.map((movie) => {
                     
-                    return( <Movie
-                            id={movie.id}
-                            year={movie.year}
-                            title={movie.title}
-                            summary={movie.summary}
-                            poster={movie.medium_cover_image} /> );
-                }) }
-            </div>
+                                return( <Movie
+                                    key={movie.id}
+                                    id={movie.id}
+                                    year={movie.year}
+                                    title={movie.title}
+                                    summary={movie.summary}
+                                    poster={movie.medium_cover_image} /> );
+                            }) 
+                         }
+                     </div>
+                    )}
+            </section>
         )
     }
 }
