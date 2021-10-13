@@ -38,7 +38,7 @@ class App extends React.Component{
                 {/*삼항 연산자 true : false 따옴표와 콜론의 위치 주의 */}
                 { isLoading ?( 
                     <div class="loader">
-                    <span class="loader__text:">Loading...</span>
+                    <span class="loader-text:">Loading...</span>
                     </div>
                  ) : (
                      <div class="movies">
