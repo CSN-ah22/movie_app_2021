@@ -1,5 +1,6 @@
 import React from "react"
 import axios from "axios"
+import Movie from "./Movie"
 
 class App extends React.Component{
     state = {
@@ -14,8 +15,11 @@ class App extends React.Component{
             data: {
                 data:{movies}
             }
-        } = await axios.get('https://yts-proxy.now.sh/list_movies.json')
-        console.log(movies)
+        } = await axios.get('https://yts-proxy.now.sh/list_movies.json?sort_by=rating') 
+        //평점 내림차순으로 영화 데이터 받기
+
+        //state의 movies[]에 할당
+        this.setState({movies, isLoading: false})
     }
 
     //초기 render() 가 끝나면 실행된다
@@ -26,13 +30,23 @@ class App extends React.Component{
 
     //View
     render(){
-        //변수 isLoading 선언후 state의 boolean값 할당
-        const { isLoading } = this.state
+        //변수 isLoading, moives 선언후 state의 boolean값과 영화 데이터 할당
+        const { isLoading, movies } = this.state
 
         return(
             <div>
                 {/*삼항 연산자 true : false 따옴표와 콜론의 위치 주의 */}
-                { isLoading ? 'Loading...' : '영화 데이터 출력' }
+                { isLoading 
+                ? 'Loading...' 
+                : movies.map((movie) => {
+                    
+                    return( <Movie
+                            id={movie.id}
+                            year={movie.year}
+                            title={movie.title}
+                            summary={movie.summary}
+                            poster={movie.medium_cover_image} /> );
+                }) }
             </div>
         )
     }
