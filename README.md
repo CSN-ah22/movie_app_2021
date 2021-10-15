@@ -19,11 +19,132 @@
 
 <img src="https://user-images.githubusercontent.com/70833455/137164329-66fed08b-5da8-4f3b-9a01-739974f689e7.png" width=280px height=380px>
 
+---
+
+## 1️⃣ State의 Movie[ ]에 API 데이터 할당하기
+
+```jsx
+        //state의 movies[]에 할당 + Loading 현상 끄기
+        this.setState({movies, isLoading: false})
+```
+## 2️⃣ Movie 컴포넌트 만들기
++ state가 필요하지 않으므로 클래스형 컴포넌트가 아니라 함수형 컴포넌트로 작성합니다
++ Moive에 넘어와야 하는 영화 데이터를 정의하고 관리하기 위해 prop-types를 사용합니다
+
+### function Movie
+```jsx
+function Movie(){
+    return (
+        <h1></h1>
+    )
+}
+```
+
+### propTypes Movie
+```jsx
+Movie.PropTyes = {
+    year: PropTyes.string.isRequired,
+    title: PropTyes.string.isRequired,
+    summary: PropTyes.string.isRequired,
+    poster: PropTyes.string.isRequired,
+    genres: PropTyes.arrayOf(PropTyes.string).isRequired
+}
+```
+해석
++ PropTyes.string = 자료형이 String
++ isRequired = 반드시 들어와야 한다
+
+## 3️⃣ sort_by로 영화 데이터 정렬하기
++ 평점 내림차순으로 영화 데이터를 화면에 보이도록 만드는 작업입니다
+
+### axios.get(url)에 sort_by 사용하기
+```jsx
+= await axios.get('https://yts-proxy.now.sh/list_movies.json?sort_by=rating') 
+        //평점 내림차순으로 영화 데이터 받기
+```
+
+## 4️⃣ Moive 컴포넌트에 props 추가하고 출력해보기
+
+### Moive 컴포넌트 수정
+```jsx
+function Movie({title,year,summary,poster, genres}){
+      return (
+              <h3 className="movie-title">{title}</h3>
+    )
+}
+```
++ 위의 코드만으로는 출력할 수 없습니다
++ 컴포넌트를 map()함수로 출력했던 내용과 같은 패턴으로 코딩해서 title을 출력하겠습니다
+
+### App 컴포넌트에서 movies.map() 사용하기
++ this.state에 있는 movies를 얻은 다음, App 컴포넌트에서 movies.map()을 사용해 로딩이 다 끝나면 
+Movie 컴포넌트로 데이터를 보내 출력하도록 만들겁니다
+
+```jsx
+return(
+.
+.
+.
+
+{ isLoading ?( Loading...) : (
+                     <div className="movies">
+                         {
+                            movies.map((movie) => {
+                                return( <Movie title={movie.title} /> );
+                            }) 
+                         }
+                     </div>
+                    )}
+        )
+```
++ 다른 year나 summary나 poster도 같은 방법으로 추가하면 됩니다
++ 다만 poster props의 경우 키 이름이 medium_cover_image 이므로 movies.poster가 아니라 movies.medium_cover_image라고 작성합니다
+
++ 실행시 결과는 잘 나오지만 key props 경고창이 나옵니다
++ 컴포넌트를 여러개 출력할땐 유일값으로 key를 지정해 주어야 하는데 없기때문에 경고창이 나온것입니다
++ movie.di를 사용해서 key props를 추가하겠습니다
+
+```jsx
+movies.map((movie) => {
+                        return( <Movie
+                                    key={movie.id}
+                                    id={movie.id}
+                                    title={movie.title} /> );
+                       }) 
+```
+## ✅ 정리
++ 영화 API를 통해 영화 데이터를 가져옴
++ 영화 데이터를 가져올때는 axios.get()함수를 사용함
++ axios.get()은 시간이 필요한 함수이므로, async, await를 사용함
++ state에 isLoading후에 Movie 컴포넌트를 이용해서 영화 데이터를 화면에 보여주도록 만듦
++ 이제부턴 예쁘게 꾸미고 나머지 props도 출력하도록 만들것임
+
+## 5️⃣ Movie 컴포넌트에 HTML 추가 + 영화 포스터 이미지 추가
+
+```jsx
+function Movie({title,year,summary,poster, genres}){
+    return (
+        <div className="movie">
+            {/*영화 포스터 이미지 추가*/}
+            <img src={poster} alt={title} title={title} />
+            <div className="movie-data">
+                <h3 className="movie-title">{title}</h3>
+                <h5 className="movie-year">{year}</h5>
+                <p className="movie-summary">{summary}</p>
+            </div>
+        </div>
+    )
+}
+```
+## 6️⃣ [ App,Moive ] CSS 파일 생성하기
++ src 폴더 안에 App.css 파일 생성
++ src 폴더 안에 Movie.css 파일 생성
+
 # 6주차
 ## [10월 06일]</br></br>
 
 ## 영화 데이터 로딩 상태 표시해 주기
-+ 컴포넌트가 마운트 되면 true 여야 한다
++ 컴포넌트가 마운트 되면 true 가 되도록 만들겁니다
 
 ```java
 state = {
