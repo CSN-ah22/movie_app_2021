@@ -16,6 +16,23 @@
 # 9주차
 ## [10월 27일]</br></br>
 
+### 영화 장르 출력하기
++ Movie 컴포넌트에서 장르를 출력하도록 코드를 수정하겠다
++ 장르 데이터를 담는 genres props가 배열이므로 map()함수를 사용한다
++ genres props를 ui, li 태그로 감싸서 출력한다
++ 마지막으로 key props를 추가해주기 위해 map() 함수에 index 매개변수를 추가한다
+
+```jsx
+<ul className="movie-genres">
+    {genres.map((genre, index) => {
+        return(
+            <li key={index} className="movie-genre">{genre}</li>
+            )
+        })
+    }
+</ul>
+```
+
 # 7주차
 ## [10월 13일]</br></br>
 
