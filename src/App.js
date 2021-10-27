@@ -1,9 +1,11 @@
-import Home from "./routes/Home"
 import "./App.css"
+import { HashRouter , Route} from 'react-router-dom'
 
 function App(){
     return(
-        <Home />
+        <HashRouter>
+            <Route />
+        </HashRouter>
     )
 }
 
