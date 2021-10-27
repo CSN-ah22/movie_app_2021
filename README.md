@@ -55,6 +55,48 @@
 ```jsx
 npm install react-router-dom
 ```
++ 설치가 안될경우 - 아래 코드 실행후 위에 설치문 재실행
+```jsx
+rm -rf node_modules && rm package-lock.json
+npm cache clean --force
+npm rebuild
+npm install react-router-dom
+```
+### 라우터 만들어보기
++ react-router-dom은 여러 종류의 라우터를 제공하는데 여기서는 HashRouter , Route를 사용할것 이다
+```jsx
+import "./App.css"
+import { HashRouter , Route} from 'react-router-dom'
+import About from './routes/About'
+import Home from "./routes/Home"
+
+function App(){
+    return(
+         <HashRouter>
+            <Route path='/' component={Home} />
+            <Route path='/about' component={About} />
+        </HashRouter>
+    )
+}
+```
+
++ Route 에는 2가지 props를 전달할 수 있는데 하나는 URL을 위한 path props이고, 하나는 URL에 맞는 컴포넌트를 불러 주기 위한 component props이다.
+
+### 라우터의 문제점
++ introduction이란 문구를 출력하는 라우터가 하나 더 있다고 가정해보자
++ 그럼 아래와 같은 문제점이 발생한다
+
+<img src="https://user-images.githubusercontent.com/70833455/139024804-ec861992-cd4f-4f15-8971-c07b3827db3d.png" width=400px height=230px>
+
++ 라우터는 path의 순서에 따라 접속하게 되는데 / , /home,/home/introduction 순서로 접속하게 되므로 서로의 출력이 겹치게 된다
+
+### 라우터 문제점 해결
++ exact={true} 를 추가한다
++ 라우터 컴포넌트에 exact props를 추가하게 되면 라우트 컴포넌트가 path props와 정확하게 일치하는 URL에만 반응하도록 만들어 준다
+
+```jsx
+<Route path='/home' exact={true} component={Home} />
+```
 
 # 7주차
 ## [10월 13일]</br></br>
