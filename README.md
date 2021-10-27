@@ -16,6 +16,9 @@
 # 9주차
 ## [10월 27일]</br></br>
 
+### 9주차 완성본
+<img src="https://user-images.githubusercontent.com/70833455/139026765-4df8e6d1-a912-4a11-9198-5c7f0372f3aa.png">
+
 ### 영화 장르 출력하기
 + Movie 컴포넌트에서 장르를 출력하도록 코드를 수정하겠다
 + 장르 데이터를 담는 genres props가 배열이므로 map()함수를 사용한다
