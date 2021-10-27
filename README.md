@@ -33,7 +33,7 @@
 </ul>
 ```
 
-### 시놉시스 설정하기
+### 시놉시스 180자 이하로 설정하기
 + summary props 에 있는 문자열을 180자로 제한할것임
 + 자바스크립트의 slice()함수를 사용함
     - [문자열].slice(시작,끝)
@@ -42,6 +42,18 @@
 
 ```jsx
 <p className="movie-summary">{summary.slice(0,180)}...</p>
+```
+</br>
+
+## 내비게이션 기능 만들기 첫번째 - 라우터 사용
+
+### 라우터란?
++ 메뉴를 클릭하면 화면이 이동해야 하는데, 이때 필요한것이 라우터이다
++ 라우터는 react-router-dom 패키지를 설치해서 사용한다
+
+### react-router-dom 패키지 설치 하기
+```jsx
+npm install react-router-dom
 ```
 
 # 7주차
