@@ -44,7 +44,7 @@ export default Navigation;
 + a태그를 사용하면 링크를 누를때마다 리액트가 죽고, 새페이지가 열리는 문제가 있다
 + 그래서 라우터의 Link 컴포넌트를 이용하면 필요한 부분만 다시 그려줄 수 있으므로 리액트의 장점을 살린다 
 
-### 영화 카드를 누르면 상세 정보 보기 기능 만들기
+## 영화 카드를 누르면 상세 정보 보기 기능 만들기
 + route props 라는것을 사용할것임
 + route props란 라우팅 대상이 되는 컴포넌트에 넘겨주는 기본 props를 말함
 + 즉 우리가 넘겨주지 않아도 기본으로 넘어가는 props 임
@@ -95,7 +95,40 @@ export default Detail;
             <Route path='/movie-detail' component={Detail} />
         </HashRouter>
 ```
+## 포스터를 클릭해서 들어오도록 유도하기
++ '/movie-detail'링크로 들어오는게 아닌 포스터를 클릭해서 들어오도록 유도할것임
++ 리다이렉트 기능을 이용할것
+    - 리다이렉트란 예를 들어서 게시판에서 어떤 글을 볼경우 10번째 게시글, 11번째 게시글이라는것을 url에의 끝에 표현하는것처럼 게시판의 고유 url은 바뀌지 않지만 게시글의 번호를 통하여 사용자가 구분해서 볼 수 있는 기능?
+---
++ '/movie-detail' 링크로 들어올경우 Home 페이지를 다시 보여줌
++ 사용자는 url로 들어가지 않고 보고싶은 영화의 포스터를 클릭함
 
+### history 사용해보기
++ history 키에는 push,go,goBack 등의 키가 있는데 이 키들 중에는 URL을 변경해주는 함수들이 있다 
++ 그래서 이 history 키를 이용해서 리다이렉트 기능을 만들겠다
+---
++ Detail.js의 Detail 컴포넌트를 클래스형을 바꾸었다
++ history키를 구조분해 할당 했다
++ 참고로 history는 route props의 키이다
+
+```jsx
+class Detail extends React.Component{
+    componentDidMount(){//Detail 컴포넌트가 죽으면
+        const { location, history }=this.props
+        if (location.state === undefined){
+            history.push('/');
+        }
+    }
+    render() {
+    return <span>hello</span>
+    }
+}
+
+export default Detail;
+```
+### 코드설명
++ 사용자가 URL을 직접 입력해서 /movie-details로 이동하면 콘솔에서 location 키의 state키가 비어있는것을 확인할 수 있다 
++ 이런 경우에만 history 키의 push()함수를 사용하여 다시 home 페이지로 넘어가는것이다
 
 # 9주차
 ## [10월 27일]</br></br>
