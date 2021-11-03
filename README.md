@@ -9,11 +9,94 @@
  [1-6. 6주차](#6주차) </br>
  [1-7. 7주차](#7주차) </br>
  [1-9. 9주차](#9주차) </br>
- [1-10. 9주차](#10주차) </br>
+ [1-10. 10주차](#10주차) </br>
 
  (4주차는 추석으로 인해 건너뛰었다)
  
 </br></br>
+# 10주차
+## [11월 03일]</br></br>
+
+### 'Home'버튼 'About'버튼 만들고 눌렀을때 화면이동 되도록 만들기
++ Navigation.js 파일을 만들고 아래 내용 작성
+```jsx
+import { Link } from 'react-router-dom'
+
+function Navigation(){
+return(
+    <div>
+    <Link to="/">Home</Link>
+    <Link to="/about">About</Link>
+    </div>
+)
+}
+
+export default Navigation;
+```
+```jsx
+        <HashRouter>
+            <Navigation />
+            <Route path='/' exact={true} component={Home} />
+            <Route path='/about' component={About} />
+        </HashRouter>
+```
+
++ a태그를 사용하면 링크를 누를때마다 리액트가 죽고, 새페이지가 열리는 문제가 있다
++ 그래서 라우터의 Link 컴포넌트를 이용하면 필요한 부분만 다시 그려줄 수 있으므로 리액트의 장점을 살린다 
+
+### 영화 카드를 누르면 상세 정보 보기 기능 만들기
++ route props 라는것을 사용할것임
++ route props란 라우팅 대상이 되는 컴포넌트에 넘겨주는 기본 props를 말함
++ 즉 우리가 넘겨주지 않아도 기본으로 넘어가는 props 임
+
+### route props에 데이터 담아 보내기(Movie.js)
+```jsx
+            <Link
+                to= {{
+                    pathname: 'movie-detail',
+                    state: { year, title, summary, poster, genres }
+                }}
+            >
+```
+
+### Movie.js , Detail.js(생성) , App.js 연결하기
++  Detail.js라는 파일을 routest 폴더 안에서 생성하고 아래 내용으로 채운다
+```jsx
+function Detail(props){
+    console.log(props)
+    return (
+    <span>hello</span>
+    )
+}
+
+export default Detail;
+```
++ Movie.js에 아래 내용으로 만들어졌는지 확인한다
+```jsx
+<div className="movie">
+            <Link
+                to= {{
+                    pathname: 'movie-detail',
+                    state: { year, title, summary, poster, genres }
+                }}
+            >
+            .
+            .
+            .
+</Link>            
+</div>
+```
++ App.js에 아래 '/movie-detail' 내용을 추가하고 확인한다
+```jsx
+        <HashRouter>
+            <Navigation />
+            <Route path='/' exact={true} component={Home} />
+            <Route path='/about' component={About} />
+            <Route path='/movie-detail' component={Detail} />
+        </HashRouter>
+```
+
+
 # 9주차
 ## [10월 27일]</br></br>
 
