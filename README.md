@@ -130,6 +130,30 @@ export default Detail;
 + 사용자가 URL을 직접 입력해서 /movie-details로 이동하면 콘솔에서 location 키의 state키가 비어있는것을 확인할 수 있다 
 + 이런 경우에만 history 키의 push()함수를 사용하여 다시 home 페이지로 넘어가는것이다
 
+### 영화 제목 출력(Details.js)
+```jsx
+    render() {
+    const {location} = this.props
+    return(
+        <span>{location.state.title}</span>  
+    ) 
+    }
+```
+
+### 영화 제목 출력 문제 해결
++ 컴포넌트 디드 마운트는 렌더가 실행이 되어야 디드마운터가 실행이 되는데
+렌더가 주소창에 써주면 렌더링이 안되므로 오류가 난다
++ 주소창에 치고 들어가면 null을 반환하고 확인하도록 만든다
+```jsx
+    if (location.state){
+        return(
+            <span>{location.state.title}</span>  
+        ) 
+    }else{
+        return null
+    }
+```
+
 # 9주차
 ## [10월 27일]</br></br>
 

@@ -9,9 +9,13 @@ class Detail extends React.Component{
     }
     render() {
     const {location} = this.props
-    return(
-        <span>{location.state.title}</span>  
-    ) 
+    if (location.state){
+        return(
+            <span>{location.state.title}</span>  
+        ) 
+    }else{
+        return null
+    }
     }
 }
 
