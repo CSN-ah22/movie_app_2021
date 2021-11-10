@@ -20,6 +20,92 @@
 
 [최종 완성 배포판] https://CSN-ah22.github.io/movie_app_2021
 
+## CDN 이란?
+특정 헤더를 통해서 브라우저에게 원 출처에서 실행되고 있는웹 애플리케이션이 다른 출처에 원하는 리소스에 접근할 수 있는 권한이 있는지 없는지를 알려주는 매커니즘이다.
+```jsx
+<script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+```
+
+## 새로운 폴더 생성
+폴더명 202030430_최선아_React
+
+1. CDN
+2. crossOrigin
+3. Babel CDN
+
+<br>
+
+### 기본 컴포넌트 실습
+
+```jsx
+    <script type="text/babel">
+    class HelloMessage extends React.Component {
+        render() {
+            return (
+            <div>
+            Hello {this.props.name}
+            </div>
+            );
+        }
+    }
+
+    ReactDOM.render( //html body 태그 안의 id가 hello-example 인 태그를 가리킴 => Taylor란 값을 넣는다
+    <HelloMessage name="Taylor" />,
+     document.getElementById('hello-example')
+    );
+    </script>
+</head>
+<body>
+<div id="hello-example"></div>    
+</body>
+```
+
+### timer 컴포넌트 실습
+
+```jsx
+<script type="text/babel">
+class Timer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { seconds: 0 };
+  }
+
+  tick() {
+    this.setState(state => ({
+      seconds: state.seconds + 1
+    }));
+  }
+
+  componentDidMount() {
+    this.interval = setInterval(() => this.tick(), 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
+  render() {
+    return (
+      <div>
+        Seconds: {this.state.seconds}
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(
+  <Timer />,
+  document.getElementById('timer-example')
+);
+    </script>
+</head>
+<body>
+<div id="timer-example"></div>    
+</body>
+</html>
+```
+
 # 10주차
 ## [11월 03일]</br></br>
 
