@@ -17,6 +17,69 @@
 # 12주차
 ## [11월 17일]</br></br>
 
+### MarkdownEditor 컴포넌트 실습
+
+✔ 외부 플러그인을 사용하는 컴포넌트 이다
+ + 사용하려는 플러그인의 CDN이 필요하다
+
+✔ Remarkable 오픈 소스 사이트 
+https://github.com/jonschlinkert/remarkable
+
+✔ 대부분의 오픈소스는 dist 디렉토리에 있는 min 파일을 사용하면 된다
+```jsx
+<script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/2.0.1/remarkable.min.js" integrity="sha512-skYYbQHAuOTpeJTthhUH3flZohep8blA+qjZOY0VqmfXMDiYcWxu29F5UbxU4LxaIpGkRBk+3Qf8qaXfd9jngg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+```
+
+✔ js 파일에 import로 <-MarkdownEditor->를 사용하는 코드
+
+```jsx
+import { Remarkable } from 'remarkable';
+```
+
+```jsx
+class MarkdownEditor extends React.Component {
+  constructor(props) {
+    super(props);
+    this.md = new Remarkable();
+    this.handleChange = this.handleChange.bind(this);
+    this.state = { value: 'Hello, **world**!' };
+  }
+
+  handleChange(e) {
+    this.setState({ value: e.target.value });
+  }
+
+  getRawMarkup() {
+    return { __html: this.md.render(this.state.value) };
+  }
+
+  render() {
+    return (
+      <div className="MarkdownEditor">
+        <h3>Input</h3>
+        <label htmlFor="markdown-content">
+          Enter some markdown
+        </label>
+        <textarea
+          id="markdown-content"
+          onChange={this.handleChange}
+          defaultValue={this.state.value}
+        />
+        <h3>Output</h3>
+        <div
+          className="content"
+          dangerouslySetInnerHTML={this.getRawMarkup()}
+        />
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(
+  <MarkdownEditor />,
+  document.getElementById('markdown-example')
+);
+```
 ### TO-DO-LIST 컴포넌트 실습
 
 <img src="https://user-images.githubusercontent.com/70833455/142145039-b3da5736-2151-4b50-a3b7-b759213457b4.PNG" width=300px>
