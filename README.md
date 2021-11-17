@@ -18,25 +18,44 @@
 ## [11월 17일]</br></br>
 
 ### MarkdownEditor 컴포넌트 실습
+</br>
 
 ✔ 외부 플러그인을 사용하는 컴포넌트 이다
  + 사용하려는 플러그인의 CDN이 필요하다
+ </br>
 
-✔ Remarkable 오픈 소스 사이트 
+✔ Remarkable 오픈 소스 사이트 </br>
 https://github.com/jonschlinkert/remarkable
+
+</br>
 
 ✔ 대부분의 오픈소스는 dist 디렉토리에 있는 min 파일을 사용하면 된다
 ```jsx
 <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/2.0.1/remarkable.min.js" integrity="sha512-skYYbQHAuOTpeJTthhUH3flZohep8blA+qjZOY0VqmfXMDiYcWxu29F5UbxU4LxaIpGkRBk+3Qf8qaXfd9jngg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 ```
+</br>
 
 ✔ js 파일에 import로 <-MarkdownEditor->를 사용하는 코드
 
 ```jsx
 import { Remarkable } from 'remarkable';
 ```
+</br>
+
++ CDN은 HTML에 <-Script-> 태그로 사용하는거고
+</br>
++ import 방법은 npx create-react-app 로 만든 새 프로젝트에서 사용하는 방법이다
+<br>
++ import 방법을 사용하겠다
+</br>
+
+<details>
+<summary>✔ APP.js 완성 소스</summary>
 
 ```jsx
+import React from 'react';
+import { Remarkable } from 'remarkable';
+
 class MarkdownEditor extends React.Component {
   constructor(props) {
     super(props);
@@ -75,11 +94,15 @@ class MarkdownEditor extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <MarkdownEditor />,
-  document.getElementById('markdown-example')
-);
+
+export default MarkdownEditor;
+
 ```
+
+</details>
+
+</br></br>
+
 ### TO-DO-LIST 컴포넌트 실습
 
 <img src="https://user-images.githubusercontent.com/70833455/142145039-b3da5736-2151-4b50-a3b7-b759213457b4.PNG" width=300px>
