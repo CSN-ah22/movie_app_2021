@@ -18,7 +18,8 @@
 ## [11월 17일]</br></br>
 
 ### MarkdownEditor 컴포넌트 실습
-</br>
+<img src="https://user-images.githubusercontent.com/70833455/142157309-a0e4db96-a608-4a39-9930-d133426b0534.png" width=350px>
+</br></br>
 
 ✔ 외부 플러그인을 사용하는 컴포넌트 이다
  + 사용하려는 플러그인의 CDN이 필요하다
@@ -44,9 +45,11 @@ import { Remarkable } from 'remarkable';
 
 + CDN은 HTML에 <-Script-> 태그로 사용하는거고
 </br>
+
 + import 방법은 npx create-react-app 로 만든 새 프로젝트에서 사용하는 방법이다
 <br>
-+ import 방법을 사용하겠다
+
++ import 방법을 사용하여 완성하겠다
 </br>
 
 <details>
