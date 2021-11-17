@@ -36,6 +36,12 @@ https://github.com/jonschlinkert/remarkable
 ```
 </br>
 
+✔ js 파일에 Remarkable 다운로드하기
+
+```jsx
+npm install remarkable --save
+```
+
 ✔ js 파일에 import로 <-MarkdownEditor->를 사용하는 코드
 
 ```jsx
