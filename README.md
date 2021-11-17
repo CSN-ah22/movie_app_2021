@@ -11,6 +11,88 @@
  [1-9. 9주차](#9주차) </br>
  [1-10. 10주차](#10주차) </br>
  [1-11. 11주차](#11주차) </br>
+
+</br></br>
+# 12주차
+## [11월 17일]</br></br>
+
+### TO-DO-LIST 컴포넌트 실습
+✔ TodoApp , TodoList 두개의 컴포넌트로 구성
+
+✔ handleChange는 모든 키보드 입력마다 React의 state를 갱신해서 보여준다
+
+✔ 시간순에 따른 동작순서 </br>
+유저입력 > handleChange > React의 state 갱신> form element가 React state를 참조
+
+```jsx
+class TodoApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { items: [], text: '' };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  render() {
+    return (
+      <div>
+        <h3>TODO</h3>
+        <TodoList items={this.state.items} />
+        <form onSubmit={this.handleSubmit}>
+          <label htmlFor="new-todo">
+            What needs to be done?
+          </label>
+          <input
+            id="new-todo"
+            onChange={this.handleChange}
+            value={this.state.text}
+          />
+          <button>
+            Add #{this.state.items.length + 1}
+          </button>
+        </form>
+      </div>
+    );
+  }
+
+  handleChange(e) {
+    this.setState({ text: e.target.value });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    if (this.state.text.length === 0) {
+      return;
+    }
+    const newItem = {
+      text: this.state.text,
+      id: Date.now()
+    };
+    this.setState(state => ({
+      items: state.items.concat(newItem),
+      text: ''
+    }));
+  }
+}
+
+class TodoList extends React.Component {
+  render() {
+    return (
+      <ul>
+        {this.props.items.map(item => (
+          <li key={item.id}>{item.text}</li>
+        ))}
+      </ul>
+    );
+  }
+}
+
+ReactDOM.render(
+  <TodoApp />,
+  document.getElementById('todos-example')
+);
+```
+
  
 </br></br>
 # 11주차
