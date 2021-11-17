@@ -11,18 +11,31 @@
  [1-9. 9주차](#9주차) </br>
  [1-10. 10주차](#10주차) </br>
  [1-11. 11주차](#11주차) </br>
+ [1-12. 12주차](#12주차) </br>
 
 </br></br>
 # 12주차
 ## [11월 17일]</br></br>
 
 ### TO-DO-LIST 컴포넌트 실습
+
+<img src="https://user-images.githubusercontent.com/70833455/142145039-b3da5736-2151-4b50-a3b7-b759213457b4.PNG">
+
 ✔ TodoApp , TodoList 두개의 컴포넌트로 구성
 
 ✔ handleChange는 모든 키보드 입력마다 React의 state를 갱신해서 보여준다
 
 ✔ 시간순에 따른 동작순서 </br>
 유저입력 > handleChange > React의 state 갱신> form element가 React state를 참조
+
+✔ handleSubmit은 TODOLIST에 하나가 추가될때마다 페이지를 refresh 해준다
+
+✔ preventDefault() 는 리액트의 최대 장점인 비동기식 refresh를 하도록 돕는다
++ 기본적으로 refresh 하게되면 서버의 모든 데이터를 받아오게된다
++ 그럼 시간이 많이 걸릴 뿐더러 비효율적인 개발이 되어버린다
++ 리액트는 받아오고 싶은 부분만 뿌려주는 비동기식 새로고침이 가능하다
++  handleSubmit 을 사용하면 동기식으로 모든 페이지를 받아온다
++  preventDefault() 는 동기식 refresh를 막는다
 
 ```jsx
 class TodoApp extends React.Component {
