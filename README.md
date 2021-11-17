@@ -19,7 +19,7 @@
 
 ### TO-DO-LIST 컴포넌트 실습
 
-<img src="https://user-images.githubusercontent.com/70833455/142145039-b3da5736-2151-4b50-a3b7-b759213457b4.PNG">
+<img src="https://user-images.githubusercontent.com/70833455/142145039-b3da5736-2151-4b50-a3b7-b759213457b4.PNG" width=300px>
 
 ✔ TodoApp , TodoList 두개의 컴포넌트로 구성
 
