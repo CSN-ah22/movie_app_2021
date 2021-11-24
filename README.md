@@ -49,7 +49,8 @@ const element = <img src={user.avatarUrl} />;
 ```
 
 ### JSX로 자식 정의
-JSX 태그는 자식을 포함할 수 있습니다.
+JSX 태그는 자식을 포함할 수 있습니다. <br>
+단,div태그로 감싸주어서 하나로 만들어줘야 합니다
 ```jsx
 const element = (
   <div>
@@ -58,6 +59,108 @@ const element = (
   </div>
 );
 
+```
+### DOM에 엘리먼트 렌더링하기
++ HTML 파일 어딘가에 div 태그가 있다고 가정해 봅시다.
+```HTML
+<div id="root"></div>
+```
++ 이 안에 들어가는 모든 엘리먼트를 React DOM에서 관리하기 때문에 이것을 “루트(root)” DOM 노드라고 부릅니다.
++ React로 구현된 애플리케이션은 일반적으로 하나의 루트 DOM 노드가 있습니다. React를 기존 앱에 통합하려는 경우 원하는 만큼 많은 수의 독립된 루트 DOM 노드가 있을 수 있습니다.
++ React 엘리먼트를 루트 DOM 노드에 렌더링하려면 둘 다 ReactDOM.render()로 전달하면 됩니다.
+
+```JSX      
+const element = <h1>Hello, world</h1>;
+ReactDOM.render(element, document.getElementById('root'));
+```
+
+### 컴포넌트란?
++ 컴포넌트는 “props”라고 하는 임의의 입력을 받은 후, 화면에 어떻게 표시되는지를 기술하는 React 엘리먼트를 반환합니다.
+
+### 컴포넌트의 이름은 항상 대문자로 시작합니다
++ React는 소문자로 시작하는 컴포넌트를 DOM 태그로 처리합니다. 예를 들어 < div / >는 HTML div 태그를 나타내지만, < Welcome />은 컴포넌트를 나타내며 범위 안에 Welcome이 있어야 합니다.
+
+### 컴포넌트 합성
++ 컴포넌트는 자신의 출력에 다른 컴포넌트를 참조할 수 있습니다.
+
+```jsx
+function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
+
+function App() {
+  return (
+    <div>
+      <Welcome name="Sara" />
+      <Welcome name="Cahal" />
+      <Welcome name="Edite" />
+    </div>
+  );
+}
+```
+
+### 함수에서 클래스로 변환하기
++ React.Component를 확장하는 동일한 이름의 ES6 class를 생성합니다.
++ render()라고 불리는 빈 메서드를 추가합니다.
+함수의 내용을 render() 메서드 안으로 옮깁니다.
++ render() 내용 안에 있는 props를 this.props로 변경합니다.
++ 남아있는 빈 함수 선언을 삭제합니다.
+```JSX
+class Clock extends React.Component {
+  render() {
+    return (
+      <div>
+        <h1>Hello, world!</h1>
+        <h2>It is {this.props.date.toLocaleTimeString()}.</h2>
+      </div>
+    );
+  }
+}
+```
+
+### 클래스에 로컬 State 추가하기
+
++ render() 메서드 안에 있는 this.props.date를 this.state.date로 변경합니다.
+
+```JSX
+class Clock extends React.Component {
+  render() {
+    return (
+      <div>
+        <h1>Hello, world!</h1>
+        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+      </div>
+    );
+  }
+}
+```
+
++ 초기 this.state를 지정하는 class constructor를 추가합니다.
+
+```JSX
+class Clock extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {date: new Date()};
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Hello, world!</h1>
+        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+      </div>
+    );
+  }
+}
+```
+
++ date prop을 삭제합니다.
+```JSX
+ReactDOM.render(
+  <Clock />,
+  document.getElementById('root')
+);
 ```
 
 </br></br>
