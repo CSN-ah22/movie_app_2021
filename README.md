@@ -12,6 +12,53 @@
  [1-10. 10주차](#10주차) </br>
  [1-11. 11주차](#11주차) </br>
  [1-12. 12주차](#12주차) </br>
+ [1-13. 13주차](#13주차) </br>
+
+</br></br>
+# 13주차
+## [11월 24일]</br></br>
+
+### JSX 소개
++ 자바스크립트와 HTML 문법을 섞어놓은것
+
+```jsx
+const element = <h1>Hello, {name}</h1>;
+```
+
++ 위의 엘리먼트를 렌더링(화면에 보이는것) 하여 출력할 수 있다
+
+```jsx
+ReactDOM.render(
+  element,
+  document.getElementById('root')
+);
+```
+### 매개변수와 인자(Parameter argument)
++ 파라미터: 메서드 생성시에 들어가는 매개변수
++ 인자: 메서드를 호출할때 들어가는 인자
+
+### JSX 속성 정의
+```jsx
+const element = <img src={user.avatarUrl}></img>;
+```
+
+### JSX를 싱글태그로 사용시
++ 반드시 /> 닫아줘야한다
+```JSX
+const element = <img src={user.avatarUrl} />;
+```
+
+### JSX로 자식 정의
+JSX 태그는 자식을 포함할 수 있습니다.
+```jsx
+const element = (
+  <div>
+    <h1>Hello!</h1>
+    <h2>Good to see you here.</h2>
+  </div>
+);
+
+```
 
 </br></br>
 # 12주차
