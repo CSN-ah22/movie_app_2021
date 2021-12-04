@@ -20,6 +20,131 @@
 # 14주차
 ## [12월 01일]</br></br>
 
+### 생명주기 메서드를 클래스에 추가하기
++ Clock이 처음 DOM에 렌더링 될 때마다 타이머를 설정하려고 합니다. 이것은 React에서 “마운팅”이라고 합니다.
++ 또한 Clock에 의해 생성된 DOM이 삭제될 때마다 타이머를 해제하려고 합니다. 이것은 React에서 “언마운팅”이라고 합니다.
+
+```jsx
+class Clock extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {date: new Date()};
+  }
+
+  componentDidMount() {
+  }
+
+  componentWillUnmount() {
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Hello, world!</h1>
+        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+      </div>
+    );
+  }
+}
+```
+
++ 이러한 메서드들은 “생명주기 메서드”라고 불립니다.
++ componentDidMount() 메서드는 컴포넌트 출력물이 DOM에 렌더링 된 후에 실행됩니다.
+
+### Clock 컴포넌트 실행 순서 정리
++ 클래스형 컴포넌트 Clock 을 ReactDOM.render()로 전달한다
++ Clock 컴포넌트의 constructor를 호출한다
++ 현재 시각을 구해오는 객체를 사용하여 this.state를 초기화 한다
++ render() 메서드를 호출합니다 - DOM 을 업데이트 합니다
++ componentDidMount() 생명주기 메서드를 호출하여 1초마다 tick() 메서드르 호출하도록 설정합니다
++ tick() 메서드가 호출될때마다 setState()를 호출하며 state값을 현재 시각으로 설정합니다
++ setState() 호출로 인한 변화를 인지하여 React가 render() 메서드를 다시 호출합니다
++ 이때가 바로 this.state.date 값이 업데이트 되어 화면에 출력됩니다
++ Clock 컴포넌트가 DOM으로부터 한 번이라도 삭제된 적이 있다면 React는 타이머를 멈추기 위해 componentWillUnmount() 생명주기 메서드를 호출합니다.
+```jsx
+class Clock extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {date: new Date()};
+  }
+
+  componentDidMount() {
+    this.timerID = setInterval(
+      () => this.tick(),
+      1000
+    );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
+  tick() {
+    this.setState({
+      date: new Date()
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Hello, world!</h1>
+        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(
+  <Clock />,
+  document.getElementById('root')
+);
+```
+
+### 컴포넌트는 자신의 state를 자식 컴포넌트에 props로 전달할 수 있습니다.
+
+```jsx
+<FormattedDate date={this.state.date} />
+```
+
++ FormattedDate 컴포넌트는 date를 자신의 props로 받을 것이고 이것이 Clock의 state로부터 왔는지, Clock의 props에서 왔는지, 수동으로 입력한 것인지 알지 못합니다.
+
+```jsx
+function FormattedDate(props) {
+  return <h2>It is {props.date.toLocaleTimeString()}.</h2>;
+}
+```
+
++ 일반적으로 이를 “하향식(top-down)” 또는 “단방향식” 데이터 흐름이라고 합니다
++ 모든 state는 항상 특정한 컴포넌트가 소유하고 있으며 그 state로부터 파생된 UI 또는 데이터는 오직 트리구조에서 자신의 “아래”에 있는 컴포넌트에만 영향을 미칩니다.
+
+### 모든 컴포넌트는 완전히 독립적 입니다
+
++ 모든 컴포넌트가 완전히 독립적이라는 것을 보여주기 위해 App 렌더링하는 세 개의 <Clock>을 만들었습니다.
++ 각 Clock은 자신만의 타이머를 설정하고 독립적으로 업데이트를 합니다
+ 
+```jsx
+function App() {
+  return (
+    <div>
+      <Clock />
+      <Clock />
+      <Clock />
+    </div>
+  );
+}
+
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+);
+```
+ 
+#### ✍React 앱에서 컴포넌트가 유상태 또는 무상태에 대한 것은 시간이 지남에 따라 변경될 수 있는 지에 따라 구분됩니다
+#### ✍유상태 컴포넌트 안에서 무상태 컴포넌트를 사용할 수 있으며, 그 반대 경우도 마찬가지로 사용할 수 있습니다.
+
+<br>
+ 
 ### 조건부 렌더링
 
 + React에서 조건부 렌더링은 JavaScript에서의 조건 처리와 같이 동작합니다. if 나 조건부 연산자 와 같은 JavaScript 연산자를 현재 상태를 나타내는 엘리먼트를 만드는 데에 사용하세요. 그러면 React는 현재 상태에 맞게 UI를 업데이트할 것입니다.
