@@ -14,12 +14,206 @@
  [1-12. 12주차](#12주차) </br>
  [1-13. 13주차](#13주차) </br>
  [1-14. 14주차](#14주차) </br>
- [1-15. 14주차](#15주차) </br>
+ [1-15. 15주차](#15주차) </br>
 
 </br></br>
 
 # 15주차
 ## [12월 09일]</br></br>
+
+### 배열을 사용할땐 MAP을 이용하자!
+
++ 배열의 값을 반환할 때는 map()함수를 사용한다. 변환하여 반환하는 것도 가능하다.
++ 아래는 map()함수를 이용하여 numbers 배열의 값을 두배로 만든 후 map()에서 반환되는 값을 출력하는 코드입니다
+
+```jsx
+const numbers = [1, 2, 3, 4, 5];
+const doubled = numbers.map((number) => number * 2);
+console.log(doubled);
+// [2, 4, 6, 8, 10]을 출력
+```
+
+### 여러개의 컴포넌트 렌더링 하기
++ map() 함수를 통해 1부터 5까지의 숫자로 이루어진 리스트를 보여줄 수 있습니다
+
+```jsx
+const numbers = [1, 2, 3, 4, 5];
+const listItems = numbers.map((numbers) =>
+  <li>{numbers}</li>
+);
+
+ReactDOM.render(
+  <ul>{listItems}</ul>,
+  document.getElementById('root')
+);
+```
+
+### Key
++ Key는 React가 어떤 항목을 변경, 추가 또는 삭제할지 식별하는 것을 돕는다.
++ key는 map 함수 안의 엘리먼트에 지정해야 합니다.
++ 일반적으로 항목이 고정적일 경우는 배열의 index값을 사용한다.
++ 항목이 변화될 우려가 있는경우 index사용을 권장하지 않는다
+  - key={number.toString()} value={number} 를 사용한다
+
+### Key로 컴포넌트 추출하기
++ ListItem 안에 있는 <li> 엘리먼트가 아니라 분해하는 곳의 <ListItem /> 엘
+리먼트가 key를 가져야 한다
++ 결론 : 위에서 적은 바와 같이 map()함수 내부에 있는 엘리먼트에 key를 넣어 주는 것이 좋다.
+
+### Key는 배열내 요소 사이에서만 고유한 값이면 된다.
++ 지역 변수와 전역 변수 처럼 하나의 map 함수 안에서 key는 하나만 존재할 수 있지만 map 함수가 두개라면 key 가 두개여도 상관없다
++ [요약] : 두 개의 다른 배열을 사용할 때 동일한 key를 사용할 수 있다.
++ 컴포넌트에 key로 사용할 prop을 전달 할 수는 있지만 key자체를 전달할 수는 없다.
++ [요약] : key값은 key로만 사용되어야 한다.
+
+### JSX에 map() 포함시키기. (인라인으로 렌더링 하기)
++ JSX를 사용하면 중괄호 안에 모든 표현식을 포함 시킬 수 있으므로 map() 함수의 결
+과를 인라인으로 처리할 수 있다.
+
+### Form
++ HTML의 form 엘리먼트는 내부 state를 갖기 때문에 React의 다른 DOM 엘리먼트와
+는 다르게 동작한다.
++ 즉 React에서는 변경할 수 있는 state가 컴포넌트의 state 속성에 저장되며,
+setState()함수를 이용해서 업데이트 한다.
++ 따라서 폼에서 사용되는 값을 React의 state로 일원화 하면 관리를 편하게 할 수 있
+다.
++ React의 state를 통해 값이 제어되는 입력 폼 엘리먼트를 “제어 컴포넌트 (controlled
+component)“라고 한다
++ 예제를 보면 value에 표시되는 값은 this.state.value가 된다.
++ 또한 입력값의 업데이트는 <b>handleChange</b>의 setState를 통해 이루어 진다.
+
+```jsx
+class NameForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {value: ''};
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+    alert('A name was submitted: ' + this.state.value);
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Name:
+          <input type="text" value={this.state.value} onChange={this.handleChange} />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    );
+  }
+}
+```
+
+### textarea 태그
++ HTML에서 textarea 엘리먼트는 텍스트를 DOM상에서의 자식으로 정의한다.
++ React에서 textarea는 value 속성을 사용한다.
++ 따라서 react의 textarea는 싱글 태그를 사용하여 작성한다.
+
+### select 태그
++ 드롭 다운 목록을 만든다.
++  select 태그에 multiple 옵션을 허용하면, value 속성에 배열을 전달할 수 있다.
+```jsx
+<select multiple={true} value={['B', 'C']}>
+```
+
+### file input 태그
++ HTML에서 <input type="file"> 은 사용자가 하나 이상의 파일을 로컬에서 서버로
+업로드하거나, File API를 통해 JavaScript로 조작할 수 있다.
++ 값이 읽기 전용이기 때문에 React에서는 비제어 컴포넌트 (uncontrolled
+components)이다.
+
+### 완전한 해결책: Formik 프레임워크 사용을 권장한다.
++ 유효성 검사, 방문한 필드 추적 및 폼 제출 처리와 같은 완벽한 해결을 원한다면 Formik이 대중적인 선택 중 하나입니다. 
+
+### sate를 parents component로 올리기
++ 때로는 동일한 데이터에 대한 변경사항을 여러 컴포넌트에 반영해야 할 필요가 있
+다. 이럴 때는 가장 가깝고, 공통된 parents component로 state를 올리는 것이 좋다.
+이번에는 그 방법에 대해서 살펴본다.
++ 이번 섹션에서는 주어진 온도에서 물이 끓는지 여부를 추정하는 온도 계산기를 만
+들어 본다.
+
+### BoilingVerdict와 Calculator 컴포넌트 작성한다.
++ BoilingVerdict 컴포넌트는 섭씨 온도를 의미하는 celsius prop를 받아서 이 온도가
+물이 끓기에 충분한지 여부를 출력한다.
++ Calculator 컴포넌트는 온도를 입력할 수 있는 <input>을 렌더링하고 그 값을
+this.state.temperature에 저장한다.
++ 그리고 현재 입력값에 대한 BoilingVerdict 컴포넌트의 반환값을 렌더링한다.
+
+### 두 번째 Input 추가하기
++ 섭씨와 함께 화씨 입력 필드도 추가하고, 두 필드 간에 동기화 상태를 유지하도록 한
+다.
++ Calculator에서 온도 입력 부분을 빼내서, TemperatureInput 컴포넌트를 작성한다
++ 그리고 "c" 또는 "f"의 값을 가질 수 있는 scale prop를 추가한다.
+이로써 Calculator 컴포넌트는 두 개의 온도 필드를 렌더링하는 간단한 컴포넌트로
+변경할 수 있게 된다.
++ 아직은 온도만 입력할 수 있는 상태이다.
+
+### 변환 함수 작성하기
++ 먼저, 섭씨를 화씨로, 또는 그 반대로 변환해주는 함수를 작성한다.
++ 작성한 두 함수는 숫자를 변환한다.
++ 이제 temperature문자열 과 변환 함수 를 인자로 받아 문자열을 반환하는 또 다른 함
+수를 작성한다.
++ 그리고 먼저 입력한 온도값을 나머지 온도값을 계산하는 용도로 사용한다.
++ 이 함수는 올바르지 않은 temperature 값에 대해서는 빈 문자열을 반환하고, 값을 소
+수점 세 번째 자리로 반올림하여 출력한다.
++ ✔ 예를 들면 tryConvert(31, toFahrenheit)와 같이 사용 할 수 있다.
+
+### State 올리기
++ 우리는 두 입력값이 서로의 것과 동기화된 상태로 있길 원합니다.
++ 이는 그 값을 필요로 하는 컴포넌트 간의 가장 가까운 공통 조상으로 state를 끌어올림으로써 이뤄낼 수 있습니다.
+
+### 어떻게 할것인가? - 1
++ 부모인 Calculator가 공유될 state를 소유하고 있으면, 이 컴포넌트는 두 입력 필드의
+현재 온도에 대한 state로 작동하게 된다.
++ TemperatureInput 컴포넌트에서 this.state.temperature를 this.props.temperature로
+대체한다.
++ 아직은 존재하지 않으나 this.props.temperature가 이미 존재한다고 가정한다.
++ 나중에는 이 값을 Calculator로부터 전달 받을 것이다.
+```jsx
+render() {
+// Before: const temperature = this.state.temperature;
+const temperature = this.props.temperature;
+// ...
+
+```
+
+### 어떻게 할것인가? - 2
++ temperature가 지역 state였을 때는 그 값을 변경하기 위해서 그저
+TemperatureInput의 this.setState()를 호출하는 것으로 충분했다.
++ 그러나 이제 temperature가 부모로부터 prop으로 전달되기 때문에
+TemperatureInput은 그 값을 제어할 능력이 없다. props는 읽기 전용이기 때문이다.
++ 온도를 갱신하려면 TemperatureInput에서 this.props.onTemperatureChange를
+호출하면 된다
+
+```jsx
+handleChange(e) {
+// Before: this.setState({temperature: e.target.value});
+this.props.onTemperatureChange(e.target.value);
+// ...
+
+```
+
+### 합성 (Composition) vs 상속 (Inheritance)
++ 합성이 상속보다 많이 쓰이고 더 좋은 기능을 담고 있다
+
+### 컴포넌트에 다른 컴포넌트 담기
++ 컴포넌트들 중에는 어떤 자식 엘리먼트가 들어올 지 미리 예상할 수 없는 경우가 있
+다.
++ HTML의 Sidebar 혹은 Dialog와 같은 컴포넌트와 같은 개념이다
++ 이러한 컴포넌트에서는 특수한 children prop을 사용하여 자식 엘리먼트를 출력에
+그대로 전달하는 것이 좋다.
++ 이러한 방식으로 다른 컴포넌트에서 JSX를 중첩하여 임의의 자식을 전달할 수 있다.
 
 # 14주차
 ## [12월 01일]</br></br>
