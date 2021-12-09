@@ -28,10 +28,22 @@
 
 ```jsx
 const numbers = [1, 2, 3, 4, 5];
-const doubled = numbers.map((number) => number * 2);
+const doubled = numbers.map((number) => number * 2); //결과를 doubled로 반환
 console.log(doubled);
 // [2, 4, 6, 8, 10]을 출력
 ```
+
+### Map 함수 이해하기
+
+```jsx
+const number = ['one','two','three','four','five'];
+const indexNumber = number.map((num,index) => console.log(num,index));
+//'one' 0  'two' 1 'three' 2 'four' 3 'five' 4
+```
+
++ 여기서 num은 위 array에 각각의 값일 것
++ index는 현재 인덱스를 말한다
++ index의 결과는 one의 위치가 [0]인 것을 의미한다.
 
 ### 여러개의 컴포넌트 렌더링 하기
 + map() 함수를 통해 1부터 5까지의 숫자로 이루어진 리스트를 보여줄 수 있습니다
